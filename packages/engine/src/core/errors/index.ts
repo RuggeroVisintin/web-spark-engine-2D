@@ -1,1 +1,1 @@
-export * from './NotImplementedError'
+export * from './NotImplementedError';

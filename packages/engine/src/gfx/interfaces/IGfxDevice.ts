@@ -1,5 +1,5 @@
-import {IDrawable} from "./IDrawable";
+import {Image} from "../drawables";
 
 export interface IGfxDevice {
-    draw(drawable: IDrawable): void;
+    drawImage(drawable: Image): void;
 }
