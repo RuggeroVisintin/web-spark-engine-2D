@@ -5,8 +5,13 @@
 </head>
 <body style="margin: 0px">
 <script>
-    const sparkEngine = new SparkEngine.SparkEngine2D(window.document.body);
-    sparkEngine.run();
+    new SparkEngine.SparkEngine2D(window.document.body, {
+        environmentPath: 'assets/img/gif/maps/light_world_0/diffuse/lightWorld0.gif',
+        renderingConfig:  {
+            width: 800,
+            height: 600
+        }
+    }).run();
 </script>
 </body>
 </html>

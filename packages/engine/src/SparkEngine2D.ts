@@ -1,7 +1,12 @@
 import {IGfxDevice} from "./gfx/interfaces";
-import {CanvasDevice} from "./gfx";
+import {CanvasDevice, CanvasDeviceProps} from "./gfx";
 import {TextureManager} from "./resources/texture/TextureManager";
 import {SceneManager} from "./scene";
+
+export interface SparkEngine2DProps {
+    environmentPath: string;
+    renderingConfig?: CanvasDeviceProps;
+}
 
 export class SparkEngine2D {
     private _gfx: IGfxDevice;
@@ -9,11 +14,9 @@ export class SparkEngine2D {
     private _sceneManager: SceneManager;
     private _running: boolean = false;
 
-    constructor(rootEl: Element) {
-        this._gfx = new CanvasDevice(rootEl);
-        console.log('gfx', this._gfx);
-        this._sceneManager = new SceneManager(
-            this._textureManager.loadResource('assets/img/gif/maps/light_world_0/diffuse/lightWorld0.gif'));
+    constructor(rootEl: Element, config: SparkEngine2DProps) {
+        this._gfx = new CanvasDevice(rootEl, config.renderingConfig);
+        this._sceneManager = new SceneManager(this._textureManager.loadResource(config.environmentPath));
     }
 
     run() {
