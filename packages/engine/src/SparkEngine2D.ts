@@ -1,7 +1,7 @@
-import {IGfxDevice} from "./gfx/interfaces";
-import {CanvasDevice, CanvasDeviceProps} from "./gfx";
-import {TextureManager} from "./resources/texture/TextureManager";
-import {SceneManager} from "./scene";
+import { IGfxDevice } from "./gfx/interfaces";
+import { CanvasDevice, CanvasDeviceProps } from "./gfx";
+import { TextureManager } from "./resources/texture/TextureManager";
+import { SceneManager } from "./scene";
 
 export interface SparkEngine2DProps {
     environmentPath: string;
@@ -31,8 +31,11 @@ export class SparkEngine2D {
     }
 
     private _run() {
-        if(this._sceneManager.environment.loaded) {
-            this._gfx.drawImage(this._sceneManager.environment.image);
+        if (this._sceneManager.environment.loaded) {
+            this._gfx.drawImage(
+                this._sceneManager.environment.image,
+                this._sceneManager.camera.transform.toVec2().inverse()
+            );
         }
     }
 }

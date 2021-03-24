@@ -1,7 +1,9 @@
 import {TextureResource} from "../resources/texture/TextureResource";
+import { Camera } from "./entities/camera";
 
 export class SceneManager {
     private _environment: TextureResource;
+    private _camera: Camera;
 
     constructor(
         environment?: TextureResource
@@ -9,6 +11,8 @@ export class SceneManager {
         if(environment) {
            this.environment = environment;
         }
+
+        this._camera = new Camera();
     }
 
     set environment(value: TextureResource) {
@@ -17,5 +21,9 @@ export class SceneManager {
 
     get environment(): TextureResource {
         return this._environment;
+    }
+
+    get camera(): Camera {
+        return this._camera;
     }
 }

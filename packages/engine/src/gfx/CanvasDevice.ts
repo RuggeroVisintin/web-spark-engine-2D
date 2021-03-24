@@ -1,6 +1,6 @@
 import {IGfxDevice} from "./interfaces";
-import * as Core from "../core";
 import {Image} from "./drawables";
+import { Vec2 } from "../core/math";
 
 export interface CanvasDeviceProps {
     width?: number;
@@ -21,7 +21,10 @@ export class CanvasDevice implements IGfxDevice {
         rootEl.appendChild(this._renderingCanvas);
     }
 
-    drawImage(drawable: Image): void {
-        this._context.drawImage(drawable, 0, 0);
+    drawImage(drawable: Image, offset?: Partial<Vec2>): void {
+        this._context.drawImage(
+            drawable,
+            offset?.x || 0,
+            offset?.y || 0);
     }
 }
