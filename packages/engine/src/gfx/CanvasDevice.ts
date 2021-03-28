@@ -21,6 +21,10 @@ export class CanvasDevice implements IGfxDevice {
         rootEl.appendChild(this._renderingCanvas);
     }
 
+    clear(): void {
+        this._context.clearRect(0, 0, this._renderingCanvas.width, this._renderingCanvas.height);
+    }
+
     drawImage(drawable: Image, offset?: Partial<Vec2>): void {
         this._context.drawImage(
             drawable,

@@ -1,5 +1,5 @@
 import {TextureResource} from "../resources/texture/TextureResource";
-import { Camera } from "./entities/camera";
+import { Camera } from "./entities/Camera";
 
 export class SceneManager {
     private _environment: TextureResource;

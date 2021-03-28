@@ -25,13 +25,16 @@ export class SparkEngine2D {
         }
 
         this._running = true;
-        setTimeout(() => {
+        
+        setInterval(() => {
             this._run();
-        }, 1000 / 60);
+        }, 33);
     }
 
     private _run() {
         if (this._sceneManager.environment.loaded) {
+            this._gfx.clear();
+
             this._gfx.drawImage(
                 this._sceneManager.environment.image,
                 this._sceneManager.camera.transform.toVec2().negate()
