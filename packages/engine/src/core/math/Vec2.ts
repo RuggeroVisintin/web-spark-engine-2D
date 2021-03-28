@@ -9,7 +9,7 @@ export class Vec2 {
         this.y = init?.y || 0;
     }
 
-    inverse(): This {
+    negate(): This {
         return new Vec2({
             x: this.x * -1,
             y: this.y * -1

@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build:dev": "webpack --mode=development",
     "serve:dev": "http-server ./dist"
   },
@@ -14,9 +14,12 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.22",
     "@types/uuid": "^8.3.0",
     "copy-webpack-plugin": "^6.0.3",
     "http-server": "^0.12.3",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.4",
     "ts-loader": "^8.0.2",
     "typescript": "^3.9.7",
     "webpack": "^4.44.1",
