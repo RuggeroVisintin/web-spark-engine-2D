@@ -11,7 +11,6 @@ export class CanvasDevice implements IGfxDevice {
     private _context: CanvasRenderingContext2D;
     private readonly _renderingCanvas: HTMLCanvasElement;
 
-
     constructor(rootEl: Element, config?: CanvasDeviceProps) {
         this._renderingCanvas = document.createElement('canvas');
         this._renderingCanvas.height = config?.height || 1080;
@@ -30,5 +29,13 @@ export class CanvasDevice implements IGfxDevice {
             drawable,
             offset?.x || 0,
             offset?.y || 0);
+    }
+
+    get width(): number {
+        return this._renderingCanvas.width;
+    }
+
+    get height(): number {
+        return this._renderingCanvas.height;
     }
 }

@@ -1,11 +1,10 @@
 import { IGfxDevice } from "./gfx/interfaces";
 import { CanvasDevice, CanvasDeviceProps } from "./gfx";
 import { TextureManager } from "./resources/texture/TextureManager";
-import { SceneManager } from "./scene";
+import { SceneManager, SceneManagerProps } from "./scene";
 
 export interface SparkEngine2DProps {
-    environmentPath: string;
-    renderingConfig?: CanvasDeviceProps;
+    sceneConfig: SceneManagerProps;
 }
 
 export class SparkEngine2D {
@@ -15,12 +14,8 @@ export class SparkEngine2D {
     private _running: boolean = false;
 
     constructor(rootEl: Element, config: SparkEngine2DProps) {
-        this._gfx = new CanvasDevice(rootEl, config.renderingConfig);
-        this._sceneManager = new SceneManager({
-            scenes: [{
-                environment: config.environmentPath
-            }]
-        });
+        this._gfx = new CanvasDevice(rootEl, config.sceneConfig.cameraSize);
+        this._sceneManager = new SceneManager(config.sceneConfig);
     }
 
     run() {
