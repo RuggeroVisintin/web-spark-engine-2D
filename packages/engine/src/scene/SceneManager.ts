@@ -1,5 +1,6 @@
-import {TextureResource} from "../resources/texture/TextureResource";
+import {TextureResource, TextureResourceHandle} from "../resources/texture/TextureResource";
 import { Camera } from "./entities/Camera";
+import { Player } from "./entities/Player";
 import { IScene, Scene } from "./Scene";
 
 export interface SceneManagerProps {
@@ -7,15 +8,24 @@ export interface SceneManagerProps {
     cameraSize: {
         width: number;
         height: number;
+    };
+    player: {
+        texturePath: TextureResourceHandle;
     }
 }
 
 export class SceneManager {
-    private _camera: Camera;
     readonly scenes: Scene[];
 
+    private __player: Player;
+    private __camera: Camera;
+
     constructor(init: SceneManagerProps) {
-        this._camera = new Camera({
+        this.__player = new Player({
+            texturePath: init.player.texturePath
+        });
+
+        this.__camera = new Camera({
             boundaries: {
                 x: 2048,
                 y: 2048
@@ -26,10 +36,15 @@ export class SceneManager {
     }
 
     update(): void {
-        this._camera.update();
+        this.__player.update();
+        this.__camera.update();
     }
 
     get camera(): Camera {
-        return this._camera;
+        return this.__camera;
+    }
+
+    get player(): Player {
+        return this.__player;
     }
 }

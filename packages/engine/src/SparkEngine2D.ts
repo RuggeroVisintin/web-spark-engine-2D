@@ -38,5 +38,10 @@ export class SparkEngine2D {
             this._textureManager.loadResource(this._sceneManager.scenes[0].environment).image,
             this._sceneManager.camera.transform.toVec2().negate()
         );
+
+        this._gfx.drawImage(
+            this._textureManager.loadResource(this._sceneManager.player.texture.textureHandle).image,
+            this._sceneManager.camera.transform.toVec2().negate()
+        )
     }
 }

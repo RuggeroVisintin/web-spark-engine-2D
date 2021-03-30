@@ -20,6 +20,8 @@ export class TextureManager implements IResourceManager {
 
     private _loadImage(path: string): TextureResource {
         const image = new Image();
+        const textureResource = new TextureResource(path, image);
+        this._resourceMap.set(textureResource.key, textureResource);
 
         image.onload = () => {
             this._resourceMap.get(path).loaded = true;
@@ -30,9 +32,6 @@ export class TextureManager implements IResourceManager {
         };
 
         image.src = path;
-
-        const textureResource = new TextureResource(path, image);
-        this._resourceMap.set(textureResource.key, textureResource);
         return textureResource;
     }
 }
