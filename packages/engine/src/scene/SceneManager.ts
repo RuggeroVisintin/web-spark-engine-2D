@@ -15,6 +15,10 @@ export class SceneManager {
         this._camera = new Camera();
     }
 
+    update(): void {
+        this._camera.update();
+    }
+
     set environment(value: TextureResource) {
         this._environment = value;
     }

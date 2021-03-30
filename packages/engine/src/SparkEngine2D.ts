@@ -33,8 +33,9 @@ export class SparkEngine2D {
 
     private _run() {
         if (this._sceneManager.environment.loaded) {
-            this._gfx.clear();
+            this._sceneManager.update();
 
+            this._gfx.clear();
             this._gfx.drawImage(
                 this._sceneManager.environment.image,
                 this._sceneManager.camera.transform.toVec2().negate()

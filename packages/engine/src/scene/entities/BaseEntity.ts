@@ -7,4 +7,6 @@ export class BaseEntity implements IEntity {
     constructor() {
         this.id = uuid();
     }
+
+    update() {};
 }
