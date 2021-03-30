@@ -4,9 +4,19 @@ import { IEntity } from "./interfaces";
 export class BaseEntity implements IEntity {
     readonly id: String;
 
+    private __children: IEntity[];
+
     constructor() {
         this.id = uuid();
     }
 
-    update() {};
+    update(): void {};
+
+    addChild(): void {
+        this.__children.push();
+    }
+
+    get children(): IEntity[] {
+        return this.__children;
+    }
 }
