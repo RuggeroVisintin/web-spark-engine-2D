@@ -16,7 +16,11 @@ export class SparkEngine2D {
 
     constructor(rootEl: Element, config: SparkEngine2DProps) {
         this._gfx = new CanvasDevice(rootEl, config.renderingConfig);
-        this._sceneManager = new SceneManager(this._textureManager.loadResource(config.environmentPath));
+        this._sceneManager = new SceneManager({
+            scenes: [{
+                environment: config.environmentPath
+            }]
+        });
     }
 
     run() {
@@ -25,21 +29,19 @@ export class SparkEngine2D {
         }
 
         this._running = true;
-        
+
         setInterval(() => {
             this._run();
         }, 33);
     }
 
     private _run() {
-        if (this._sceneManager.environment.loaded) {
-            this._sceneManager.update();
+        this._sceneManager.update();
 
-            this._gfx.clear();
-            this._gfx.drawImage(
-                this._sceneManager.environment.image,
-                this._sceneManager.camera.transform.toVec2().negate()
-            );
-        }
+        this._gfx.clear();
+        this._gfx.drawImage(
+            this._textureManager.loadResource(this._sceneManager.scenes[0].environment).image,
+            this._sceneManager.camera.transform.toVec2().negate()
+        );
     }
 }
