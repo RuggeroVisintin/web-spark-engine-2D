@@ -3,10 +3,16 @@ import { Vec2 } from "../../core/math";
 type This = TransformComponent;
 
 export class TransformComponent {
-    private _transform: Vec2;
+    private _position: Vec2;
+    private _scale: Vec2;
+
+    private _children: TransformComponent[];
+    private _renderingPosition: Vec2;
 
     constructor(transform?: Partial<Vec2>) {
-        this._transform = new Vec2(transform);
+        this._position = new Vec2(transform);
+        this.renderingPosition = new Vec2(transform);
+        this._children = [];
     }
 
     translate(transform: Partial<Vec2>): This {
@@ -17,32 +23,40 @@ export class TransformComponent {
     }
 
     translateX(x: number): This {
-        this.x += x;
+        this._position.x += x;
         return this;
     }
 
     translateY(y: number): This {
-        this.y += y;
+        this._position.y += y;
         return this;
     }
 
-    toVec2(): Vec2 {
-        return this._transform;
+    addChild(child: TransformComponent) {
+        this._children.push(child);
     }
 
-    set x(value: number) {
-        this._transform.x = value;
+    getPosition(): Vec2 {
+        return this._position;
     }
 
-    get x(): number {
-        return this._transform.x;
+    set scale(scale: Vec2) {
+        this._scale = scale;
     }
 
-    set y(value: number) {
-        this._transform.y = value;
+    get scale(): Vec2 {
+        return this._scale;
     }
 
-    get y(): number {
-        return this._transform.y;
+    set renderingPosition(renderingPosition: Vec2) {
+        this._renderingPosition = renderingPosition;
+    }
+
+    get renderingPosition(): Vec2 {
+        return this._renderingPosition;
+    }
+
+    get children(): TransformComponent[] {
+        return this._children;
     }
 }

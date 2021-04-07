@@ -36,6 +36,17 @@ describe('core', () => {
                     expect(vec2.negate()).toEqual({x: -5, y: -10});
                 });
             });
+
+            describe('add', () => {
+                it('Should sum two vectors', () => {
+                    const vecA = new Vec2({x: 10, y: 5});
+                    const vecB = new Vec2({x: 1, y: 7});
+                    const result = vecA.add(vecB);
+
+                    expect(result.x).toEqual(11);
+                    expect(result.y).toEqual(12);
+                });
+            });
         });
-    })
-})
+    });
+});

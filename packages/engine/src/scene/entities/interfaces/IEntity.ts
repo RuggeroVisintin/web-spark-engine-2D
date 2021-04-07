@@ -1,7 +1,8 @@
+import { IComponent } from "../../components/interfaces";
+
 export interface IEntity {
     readonly id: String;
-    children: IEntity[];
-
+    
+    // addComponent<T extends IComponent>(component: T): void;
     update(): void;
-    addChild(): void;
 }

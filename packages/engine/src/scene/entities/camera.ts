@@ -40,20 +40,20 @@ export class Camera extends BaseEntity {
     }
 
     update(): void {
-        if (this.input.isPressed('KeyW') && this.transform.y - MOVING_SPEED > 0) {
-            this.transform.translateY(-MOVING_SPEED);
-        }
+        // if (this.input.isPressed('KeyW') && this.transform.y - MOVING_SPEED > 0) {
+        //     this.transform.translateY(-MOVING_SPEED);
+        // }
 
-        if (this.input.isPressed('KeyS') && this.transform.y + MOVING_SPEED < this.__boundaries.y - this.height) {
-            this.transform.translateY(MOVING_SPEED);
-        }
+        // if (this.input.isPressed('KeyS') && this.transform.y + MOVING_SPEED < this.__boundaries.y - this.height) {
+        //     this.transform.translateY(MOVING_SPEED);
+        // }
 
-        if (this.input.isPressed('KeyA') && this.transform.x - MOVING_SPEED > 0) {
-            this.transform.translateX(-MOVING_SPEED);
-        }
+        // if (this.input.isPressed('KeyA') && this.transform.x - MOVING_SPEED > 0) {
+        //     this.transform.translateX(-MOVING_SPEED);
+        // }
 
-        if (this.input.isPressed('KeyD') && this.transform.x + MOVING_SPEED < this.__boundaries.x - this.width) {
-            this.transform.translateX(MOVING_SPEED);
-        }
+        // if (this.input.isPressed('KeyD') && this.transform.x + MOVING_SPEED < this.__boundaries.x - this.width) {
+        //     this.transform.translateX(MOVING_SPEED);
+        // }
     }
 }

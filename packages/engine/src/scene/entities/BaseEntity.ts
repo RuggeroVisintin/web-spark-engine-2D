@@ -1,22 +1,22 @@
 import { v4 as uuid } from 'uuid';
+import { IComponent } from '../components/interfaces';
 import { IEntity } from "./interfaces";
 
 export class BaseEntity implements IEntity {
     readonly id: String;
-
-    private __children: IEntity[];
-
+    protected _components: {[key: string]: IComponent[]};
+    
     constructor() {
         this.id = uuid();
     }
 
+    // addComponent<T extends IComponent>(component: T): void {
+    //     if (!this._components[typeof component]) {
+    //         this._components[typeof component] = [];
+    //     }
+
+    //     this._components[typeof component].push(component);
+    // }
+
     update(): void {};
-
-    addChild(): void {
-        this.__children.push();
-    }
-
-    get children(): IEntity[] {
-        return this.__children;
-    }
 }

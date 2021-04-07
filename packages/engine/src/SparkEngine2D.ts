@@ -2,6 +2,8 @@ import { IGfxDevice } from "./gfx/interfaces";
 import { CanvasDevice, CanvasDeviceProps } from "./gfx";
 import { TextureManager } from "./resources/texture/TextureManager";
 import { SceneManager, SceneManagerProps } from "./scene";
+import { HierarchySystem } from "./scene/systems/HieararchySystem";
+import { Vec2 } from "./core/math";
 
 export interface SparkEngine2DProps {
     sceneConfig: SceneManagerProps;
@@ -36,12 +38,17 @@ export class SparkEngine2D {
         this._gfx.clear();
         this._gfx.drawImage(
             this._textureManager.loadResource(this._sceneManager.scenes[0].environment).image,
-            this._sceneManager.camera.transform.toVec2().negate()
+            this._sceneManager.camera.transform.renderingPosition.negate()
         );
+
+        const renderingPos = new Vec2({
+            x: this._sceneManager.player.transform.renderingPosition.x,
+            y: this._sceneManager.player.transform.renderingPosition.y
+        })
 
         this._gfx.drawImage(
             this._textureManager.loadResource(this._sceneManager.player.texture.textureHandle).image,
-            this._sceneManager.camera.transform.toVec2().negate()
+            renderingPos
         )
     }
 }
