@@ -41,10 +41,7 @@ export class SparkEngine2D {
             this._sceneManager.camera.transform.renderingPosition.negate()
         );
 
-        const renderingPos = new Vec2({
-            x: this._sceneManager.player.transform.renderingPosition.x,
-            y: this._sceneManager.player.transform.renderingPosition.y
-        })
+        const renderingPos = this._sceneManager.player.transform.renderingPosition;
 
         this._gfx.drawImage(
             this._textureManager.loadResource(this._sceneManager.player.texture.textureHandle).image,
