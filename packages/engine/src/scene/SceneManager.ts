@@ -1,6 +1,7 @@
 import { Vec2 } from "../core/math";
 import {TextureResource, TextureResourceHandle} from "../resources/texture/TextureResource";
 import { Camera } from "./entities/Camera";
+import { CenteredCamera } from "./entities/CenteredCamera";
 import { Player } from "./entities/Player";
 import { IScene, Scene } from "./Scene";
 import { HierarchySystem } from "./systems/HieararchySystem";
@@ -25,22 +26,20 @@ export class SceneManager {
     private _hieararchy: HierarchySystem;
 
     constructor(init: SceneManagerProps) {
-        this.__camera = new Camera({
-            boundaries: {
-                x: 2048,
-                y: 2048
-            },
-            size: init.cameraSize
-        });
+        this._hieararchy = new HierarchySystem();
+
         this.__player = new Player({
             texturePath: init.player.texturePath,
-            position: new Vec2({x: 400, y: 400})
+            position: new Vec2({x: 0, y: 0})
         });
-        this.__player.transform.addChild(this.camera.transform);
-
+        
+        this.__camera = new CenteredCamera({
+            size: init.cameraSize,
+            target: this.__player
+        });
+        
         this.scenes = init.scenes.map(scene => new Scene(scene));
 
-        this._hieararchy = new HierarchySystem();
         this._hieararchy.registerComponent(this.__camera.transform);
         this._hieararchy.registerComponent(this.__player.transform);
     }

@@ -1,18 +1,24 @@
 import { Vec2 } from "../../core/math";
+import { BaseComoponent } from "./BaseComoponent";
 
 type This = TransformComponent;
 
-export class TransformComponent {
+export class TransformComponent extends BaseComoponent {
     private _position: Vec2;
     private _scale: Vec2;
 
     private _children: TransformComponent[];
     private _renderingPosition: Vec2;
 
+    private _freezed: boolean;
+
     constructor(transform?: Partial<Vec2>) {
+        super();
+
         this._position = new Vec2(transform);
         this.renderingPosition = new Vec2(transform);
         this._children = [];
+        this._freezed = false;
     }
 
     translate(transform: Partial<Vec2>): This {
@@ -38,6 +44,14 @@ export class TransformComponent {
 
     getPosition(): Vec2 {
         return this._position;
+    }
+
+    set freezed(value: boolean) {
+        this._freezed = value;
+    }
+
+    get freezed(): boolean {
+        return this._freezed;
     }
 
     set scale(scale: Vec2) {

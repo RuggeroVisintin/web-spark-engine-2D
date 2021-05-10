@@ -1,13 +1,16 @@
+import { BaseComoponent } from "./BaseComoponent";
 
 export enum InputStates {
     Pressed = 'Pressed',
     Released = 'Released'
 }
 
-export class InputComponent {
+export class InputComponent extends BaseComoponent {
     private __eventsMap: {[key: string]: InputStates} = {};
 
     constructor() {
+        super();
+
         window.addEventListener('keyup',  event => this.__keyupEventListener(event));
         window.addEventListener('keydown', event => this.__keydownEventListener(event));
     }

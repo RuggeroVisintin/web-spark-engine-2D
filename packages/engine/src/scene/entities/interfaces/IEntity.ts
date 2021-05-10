@@ -5,4 +5,6 @@ export interface IEntity {
     
     // addComponent<T extends IComponent>(component: T): void;
     update(): void;
+    addComponent<T extends IComponent>(key: string, component: T): void;
+    getComponent<T extends IComponent>(x: string): T | null;
 }

@@ -21,6 +21,10 @@ export class Player extends BaseEntity {
         this.texture = new TextureComponent(init.texturePath);
         this.transform = new TransformComponent(init.position);
         this.input = new InputComponent();
+
+        this.addComponent<TextureComponent>('TextureComponent', this.texture);
+        this.addComponent<TransformComponent>('TransformComponent', this.transform);
+        this.addComponent<InputComponent>('InputComponent', this.input);
     }
 
     update(): void {
@@ -38,6 +42,7 @@ export class Player extends BaseEntity {
 
         if (this.input.isPressed('KeyD')) {
             this.transform.translateX(MOVING_SPEED);
+            console.log('MoveRight',  this.transform.renderingPosition)
         }
     }
 }

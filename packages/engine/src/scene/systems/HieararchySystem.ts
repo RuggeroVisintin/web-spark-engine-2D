@@ -11,6 +11,8 @@ export class HierarchySystem implements ISystem<TransformComponent>{
     update() {
         this._components.forEach(transformComponent => {
             transformComponent.children.forEach(child => {
+                if (child.freezed) return;
+
                 child.renderingPosition = transformComponent.getPosition().add(child.getPosition());
             });
         })
